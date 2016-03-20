@@ -14,15 +14,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<style type="text/css">
- 	
-        #weeksvilleMap {
-          width: 80%;
-          height: 500px;
-          background-color: gray;
-          margin: 0 auto;
-     		}
-  
-    </style>
+
+  #weeksvilleMap 
+    {
+      width: 80%;
+      height: 500px;
+      background-color: gray;
+      margin: 0 auto;
+    }
+
+  </style>
 
 </head>
 
@@ -45,65 +46,39 @@
 	<script type="text/javascript">
 
  
- 	//CartoDB Basemap
+ 	// CartoDB Basemap-Light
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
    });
 
 	//Vacant Lots? Create an array?
-	var weeksvilleMapData = [
-     {
-       name: "216 Buffalo Ave",
-       coord: [40.6717,-73.9253]
-     },
-     {
-       name: "1572 St Johns Pl",
-       coord: [40.6702,-73.9262]
-     },
-     {
-       name: "1547 Prospect Pl",
-       coord: [40.6731, -73.9259]
-     },
+	// var weeksvilleMapData = [
+ //     {
+ //       name: "216 Buffalo Ave",
+ //       coord: [40.6717,-73.9253]
+ //     },
+ //     {
+ //       name: "1572 St Johns Pl",
+ //       coord: [40.6702,-73.9262]
+ //     },
+ //     {
+ //       name: "1547 Prospect Pl",
+ //       coord: [40.6731, -73.9259]
+ //     },
 
-     ]
+ //     ]
 
-   var weeksville = [40.670760,-73.926980]
-   var myZoom = 15;
+// Default map zoom & focus
+  var weeksville = [40.670760,-73.926980]
+  var myZoom = 15;
  
-   //LEAFLET
-   var map = L.map('weeksvilleMap').setView(weeksville, myZoom);
+// Leaflet
+  var map = L.map('weeksvilleMap').setView(weeksville, myZoom);
  
-   map.addLayer(layer)
+  map.addLayer(layer)
 
   $.getJSON('map.geojson', function(data) {
     console.log(data);
-
-//Marker options not yet functioning
-    var park_style = {
-      radius: 10,
-      color: "#FFF",
-      weight: 2,
-      opacity: 1,
-    };
-
-    var not_park_style = {
-      radius: 10,
-      color: "#000",
-      weight: 2,
-      opacity: 1,
-    }
-
-    L.geoJson(data, {
-      pointTolayer: function (feature, latlng) {
-        console.log (feature);
-
-        if(feature.properties.park == "true") {
-          return L.circleMarker(latlng, park_style);}
-        else {
-          return L.circleMarker(latlng, not_park_style);}
-      }
-    }).addTo(map);
-  });
 
 var geojson;
 
@@ -134,7 +109,7 @@ function onEachFeature(feature, layer) {
 }
 
 
-//Neighborhood tabulation shapes
+// Neighborhood tabulation shapes
   $.getJSON('ntas.geojson', function(ntadata) {
     console.log(ntadata);
     L.geoJson(ntadata, {
@@ -143,14 +118,12 @@ function onEachFeature(feature, layer) {
 
   });
  
- //Weeksville 
+ // Weeksville 
    weeksvilleMapData.forEach(function(element) {
     var customOptions = {
         'maxWidth': '200px',
         'className' : 'custom'
         }
-    var marker = L.marker(element.coord).addTo(map);
-        marker.bindPopup(" <img src='http://www.libcrowds.com/static/img/placeholder.project.png'> <b>Vacant Lot</b><br>My location: " + element.name,customOptions)
    });
  
    //WEEKSVILLE POLYGON
