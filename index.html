@@ -46,27 +46,10 @@
 	<script type="text/javascript">
 
  
- 	// CartoDB Basemap-Light
+// CartoDB Basemap-Light
 	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
    });
-
-	//Vacant Lots? Create an array?
-	// var weeksvilleMapData = [
- //     {
- //       name: "216 Buffalo Ave",
- //       coord: [40.6717,-73.9253]
- //     },
- //     {
- //       name: "1572 St Johns Pl",
- //       coord: [40.6702,-73.9262]
- //     },
- //     {
- //       name: "1547 Prospect Pl",
- //       coord: [40.6731, -73.9259]
- //     },
-
- //     ]
 
 // Default map zoom & focus
   var weeksville = [40.670760,-73.926980]
@@ -74,7 +57,6 @@
  
 // Leaflet
   var map = L.map('weeksvilleMap').setView(weeksville, myZoom);
- 
   map.addLayer(layer)
 
   $.getJSON('map.geojson', function(data) {
