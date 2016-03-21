@@ -1,122 +1,166 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Planning ahead for Weeksville Neighborhoods</title>
+  <meta charset="utf-8">
+  <title>Planning ahead for Weeksville Neighborhoods</title>
 
 <!-- Leaflet Stylesheet -->
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
- 
- <!-- From Bootstrap: Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<!-- From Bootstrap: Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <style type="text/css">
+        body, html {
+          background-color: gray;
+          font-family: Gotham, serif;
+        }
 
-	<style type="text/css">
-
-  #weeksvilleMap 
-    {
-      width: 80%;
-      height: 500px;
-      background-color: gray;
-      margin: 0 auto;
-    }
-
+        #weeksvilleMap {
+          width: 90%;
+          height: 500px;
+          background-color: gray;
+          margin: 0 auto;
+          float: left;
+        }
+  }
   </style>
 
 </head>
 
 <body>
-
-<!-- Leaflet, jQuery, and Bootstrap links -->
-
-	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"> </script>
-	<script src="https://code.jquery.com/jquery-2.2.0.min.js"> </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-<!-- Bootstrap Navbar -->
-
-<nav class="navbar navbar-default">
+  <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="#">Weeksville Corridor Plan</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="#" id="btn-about">About</a></li>
+        <li><a href="#" id="btn-vision">Vision</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Context<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">Weeksville Neighborhood</a></li>
+            <li><a href="#">Neighborhood Tabulation Areas</a></li>
+            <li><a href="#">Utica Avenue: Commercial Core</a></li>
+            <li role="separator" class="divider"> Community Organizations</li>
+            <li><a href="http://www.weeksvillesociety.org/">Weeksville Heritage Center</a></li>
+            <li><a href="#">Community Organization #2</a></li>
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
-<div id="content">
-    <h1>Planning ahead for Weeksville Neighborhoods</h1>
-    <p>Weeksville is a historically significant neighborhood located in Eastern Crown Heights in Brooklyn, New York. The area of Weeksville being studied is outlined on the map below in blue. </br> Markers show lots of opportunity.</p>
+<div class="jumbotron" id="about">
+  <h2>About</h2>
+  <p>The Weeksville Corridor Improvement Plan aims to: 
+    <ul> 
+      <li>Strengthen the Utica Avenue Commercial Corridor.</li>
+      <li>Complete neighborhood wide street scaping on key residential and commercial arteries.</li>
+      <li>Preserve Weeksville’s Historical Identity.</li>
+      <li>Engage in Local Community Capacity Building.</li>
+    </ul>
+  </p>
 </div>
 
-<div id="weeksvilleMap">
+<div class="jumbotron" id="vision">
+  <h2>Vision</h2>
+  <p>The Weeksville Corridor Improvement Plan envisions an empowered Weeksville community with a thriving local business district centered on Utica Avenue. The community’s capacities are strengthened on both professional and individual levels.  Community development, economic growth, and neighborhood livability are enhanced, while residents  are the direct beneficiaries of such improvements . This plan envisions a Weeksville community that is recognized as a historic district and known for its cultural background and historical relevance and contributions to the United States of America.  </p>
 </div>
 
-	<script type="text/javascript">
- 
-// CartoDB Basemap-Light
-	var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
+
+<div id="weeksvilleMap"></div>
+
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+//Navbar Toggles for About and Vision
+$(document).ready(function(){
+   $("#vision").hide(function(){
+        });
+        
+      $("#btn-vision").click(function(){
+        $("#vision").slideToggle("slow");
+    });
+  });
+
+ $(document).ready(function(){
+   $("#about").hide(function(){
+        });
+        
+      $("#btn-about").click(function(){
+        $("#about").slideToggle("slow");
+    });
+  });
+
+  //CartoDB Basemap
+  var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
    });
 
-// Default map zoom & focus
-  var weeksville = [40.670760,-73.926980]
-  var myZoom = 15;
+  //Vacant Lots? Create an array?
+  var weeksvilleMapData = [
+     {
+       name: "216 Buffalo Ave",
+       coord: [40.6717,-73.9253]
+     },
+     {
+       name: "1572 St Johns Pl",
+       coord: [40.6702,-73.9262]
+     },
+     {
+       name: "1547 Prospect Pl",
+       coord: [40.6731, -73.9259]
+     },
+
+     ]
+
+   var weeksville = [40.670760,-73.926980]
+   var myZoom = 15;
  
-// Leaflet
-  var map = L.map('weeksvilleMap').setView(weeksville, myZoom);
-  map.addLayer(layer)
+   //LEAFLET
+   var map = L.map('weeksvilleMap').setView(weeksville, myZoom);
+ 
+   map.addLayer(layer)
 
   $.getJSON('map.geojson', function(data) {
     console.log(data);
+
+//Marker options not yet functioning
+    var park_style = {
+      radius: 10,
+      color: "#FFF",
+      weight: 2,
+      opacity: 1,
+    };
+
+    var not_park_style = {
+      radius: 10,
+      color: "#000",
+      weight: 2,
+      opacity: 1,
+    }
+
+    L.geoJson(data, {
+      pointTolayer: function (feature, latlng) {
+        console.log (feature);
+
+        if(feature.properties.park == "true") {
+          return L.circleMarker(latlng, park_style);}
+        else {
+          return L.circleMarker(latlng, not_park_style);}
+      }
+    }).addTo(map);
+  });
 
 var geojson;
 
@@ -147,7 +191,7 @@ function onEachFeature(feature, layer) {
 }
 
 
-// Neighborhood tabulation shapes
+//Neighborhood tabulation shapes
   $.getJSON('ntas.geojson', function(ntadata) {
     console.log(ntadata);
     L.geoJson(ntadata, {
@@ -156,27 +200,29 @@ function onEachFeature(feature, layer) {
 
   });
  
- // // Weeksville 
- //   weeksvilleMapData.forEach(function(element) {
- //    var customOptions = {
- //        'maxWidth': '200px',
- //        'className' : 'custom'
- //        }
- //   });
+ //Weeksville 
+   weeksvilleMapData.forEach(function(element) {
+    var customOptions = {
+        'maxWidth': '200px',
+        'className' : 'custom'
+        }
+    var marker = L.marker(element.coord).addTo(map);
+        marker.bindPopup(" <img src='http://www.libcrowds.com/static/img/placeholder.project.png'> <b>Vacant Lot</b><br>My location: " + element.name,customOptions)
+   });
  
-// Weeksville Polygon
-	 var polygon = L.polygon([
-		[40.668351,-73.920071],
-		[40.664575,-73.928740],
-		[40.665096,-73.928740],
-		[40.665389,-73.934276],
-		[40.671606,-73.933589],
-		[40.671801,-73.936422],
-		[40.677562,-73.935821],
-		[40.676716,-73.919256]
-		]);
+   //WEEKSVILLE POLYGON
+   var polygon = L.polygon([
+    [40.668351,-73.920071],
+    [40.664575,-73.928740],
+    [40.665096,-73.928740],
+    [40.665389,-73.934276],
+    [40.671606,-73.933589],
+    [40.671801,-73.936422],
+    [40.677562,-73.935821],
+    [40.676716,-73.919256]
+    ]);
 
-	 polygon.addTo(map)
+   polygon.addTo(map)
  
    </script>
  </body>
